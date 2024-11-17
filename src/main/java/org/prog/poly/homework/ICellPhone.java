@@ -1,4 +1,4 @@
-package org.prog.poly.homework.polyhomework;
+package org.prog.poly.homework;
 
 public interface ICellPhone  {
     void call();

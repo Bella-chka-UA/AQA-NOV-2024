@@ -11,4 +11,21 @@ package org.prog.poly.homework;
  * And it will scan,make photo, call;
  */
 public class PolyHomeWork {
+    public static void main(String[] args) {
+        Phone phone = new Phone();
+        AndroidPhone androidPhone = new AndroidPhone();
+        ApplePhone applePhone = new ApplePhone();
+
+        using(phone);
+        using(androidPhone);
+        using(applePhone);
+
+
+    }
+    public static void using(ICellPhone iCellPhone) {
+        iCellPhone.call();
+        iCellPhone.scanBiometrics();
+        iCellPhone.makePhoto();
+        iCellPhone.call();
+    }
 }
