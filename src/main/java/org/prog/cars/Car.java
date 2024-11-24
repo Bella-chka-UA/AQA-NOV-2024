@@ -1,27 +1,27 @@
 package org.prog.cars;
 
+import java.util.List;
+
 public class Car {
 
     public String color;
-    public String ownerName;
 
     @Override
     public String toString() {
-        return color + " car belongs to " + ownerName;
+        return color + " car";
     }
 
     @Override
     public int hashCode() {
         //"red"+"John" => "redJohn"
-        return (color + ownerName).hashCode();
+        return (color).hashCode();
     }
 
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof Car) {
             Car c = (Car) obj;
-            boolean carColorsAreTheSame = this.color.equals(c.color) &&
-                    this.ownerName.equals(c.ownerName);
+            boolean carColorsAreTheSame = this.color.equals(c.color);
             return carColorsAreTheSame;
         }
         return false;
