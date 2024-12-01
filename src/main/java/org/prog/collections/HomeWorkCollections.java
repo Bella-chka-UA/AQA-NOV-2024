@@ -19,42 +19,48 @@ import java.util.*;
 // >>>> Car4: John, Sarah
 public class HomeWorkCollections {
     public static void main(String[] args) {
-        Map<Owner, List<String>> ownersAndCar = new HashMap<>();
-        String requestedCar = "Car 1";
-        Set<Owner> ownersOfSpecificCars = findsOwner(ownersAndCar, requestedCar);
-        addOwnersToCompany(ownersAndCar);
-        addOwnersToCompany(ownersAndCar);
-        addOwnersToCompany(ownersAndCar);
-        addOwnersToCompany(ownersAndCar);
+        Map<Car, Set<Owner>> carsAndOwners = new HashMap<>();
 
-        for (Owner owner : ownersOfSpecificCars) {
-            System.out.println(owner);
+
+        addOwnersToCar(carsAndOwners, Set.of("Jane","Bill"),"Car 1");
+        addOwnersToCar(carsAndOwners, Set.of("Jane"),"Car 2");
+        addOwnersToCar(carsAndOwners, Set.of("Jane"),"Car 3");
+        addOwnersToCar(carsAndOwners, Set.of("John", "Sarah"),"Car 4");
+        addOwnersToCar(carsAndOwners, Set.of("Bill", "Sarah"),"Car 5");
+
+        printRepetitiveCars(carsAndOwners);
+    }
+
+    public static void addOwnersToCar (Map<Car, Set<Owner>> ownersAndCar, Set<String> names, String nameCar) {
+        Car car = new Car();
+        car.color = "White" ;
+        car.name = nameCar;
+        var owners = new HashSet<Owner>();
+        for (String nameOwner : names) {
+            Owner owner = new Owner();
+            owner.name = nameOwner;
+            owners.add(owner);
         }
+        ownersAndCar.put(car, owners);
     }
 
-    public static void addOwnersToCompany(Map<Owner, List<String>> ownersAndCar) {
-        Owner owner = new Owner();
-        ownersAndCar.put(owner, new ArrayList<>());
-        ownersAndCar.get(owner).add("Jane");
-        ownersAndCar.get(owner).add("John");
-        ownersAndCar.get(owner).add("Bill");
-    }
-
-    public static Set<Owner> findsOwner(Map<Owner, List<String>> ownersAndCar, String requestedCar) {
-        Set<Owner> ownersOfSpecificCars = new HashSet<>();
-        Iterator<Map.Entry<Owner, List<String>>> iterator =
+    public static void printRepetitiveCars (Map<Car, Set<Owner>> ownersAndCar) {
+        Iterator<Map.Entry<Car, Set<Owner>>> iterator =
                 ownersAndCar.entrySet().iterator();
         while (iterator.hasNext()) {
-            Map.Entry<Owner, List<String>> entry = iterator.next();
-            Owner ownerVerified = entry.getKey();
-            List<String> car = entry.getValue();
-            if (car.contains(requestedCar)) {
-                ownersOfSpecificCars.add(ownerVerified);
-            }
-        }
+            Map.Entry<Car, Set<Owner>> entry = iterator.next();
+            Car car = entry.getKey();
+            Set<Owner> owners = entry.getValue();
+            if (owners.size()>1){
+                System.out.print(car.name+": ");
+                for (Owner owner : owners) {
+                    System.out.print(owner.name + " ");
 
-        return ownersOfSpecificCars;
+                }
+                System.out.println();
+            }
+            }
+
+
     }
 }
-
-
