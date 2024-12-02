@@ -5,7 +5,6 @@ import java.util.List;
 public class Car {
 
     public String color;
-    public String name;
 
     @Override
     public String toString() {
@@ -15,7 +14,7 @@ public class Car {
     @Override
     public int hashCode() {
         //"red"+"John" => "redJohn"
-        return (color+name).hashCode();
+        return (color).hashCode();
     }
 
     @Override
@@ -23,9 +22,7 @@ public class Car {
         if (obj instanceof Car) {
             Car c = (Car) obj;
             boolean carColorsAreTheSame = this.color.equals(c.color);
-            boolean carNamesAreTheSame = this.name.equals(c.name);
-
-            return carColorsAreTheSame && carNamesAreTheSame;
+            return carColorsAreTheSame;
         }
         return false;
     }
