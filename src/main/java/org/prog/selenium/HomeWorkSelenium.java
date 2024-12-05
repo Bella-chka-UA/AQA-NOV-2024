@@ -23,8 +23,8 @@ public class HomeWorkSelenium {
             searchInput.sendKeys(Keys.ENTER);
 
 
-            List<WebElement> searchIPhones =new WebDriverWait(driver,Duration.ofSeconds(5l)).
-                    until(ExpectedConditions.numberOfElementsToBeMoreThan(By.className("product-card__content"),1));
+            List<WebElement> searchIPhones =new WebDriverWait(driver,Duration.ofSeconds(5L))
+                    .until(ExpectedConditions.numberOfElementsToBeMoreThan(By.className("product-card__content"),1));
 
                 var webElement= searchIPhones.get(3).findElement(By.tagName("a"));
 
