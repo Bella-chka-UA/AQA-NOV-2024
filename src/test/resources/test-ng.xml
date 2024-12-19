@@ -5,6 +5,7 @@
             <!--            <class name="org.prog.testng.MyTestNGTest"/>-->
             <!--            <class name="org.prog.testng.MyTestNGTest2"/>-->
             <class name="org.prog.testng.GoogleTestNG"/>
+            <class name="org.prog.testng.AlloUaTestNG"/>
         </classes>
     </test>
 </suite>
