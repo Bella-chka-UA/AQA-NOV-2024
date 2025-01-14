@@ -35,6 +35,6 @@ public class RestTests {
 //                "user's gender mismatch! Expected male, but was female!");
 
         ResultsDto dto = response.as(ResultsDto.class);
-        Assert.assertEquals(dto.getResults().get(0).getGender(), "female");
+       Assert.assertEquals(dto.getResults().get(0).getGender(),"male");
     }
 }

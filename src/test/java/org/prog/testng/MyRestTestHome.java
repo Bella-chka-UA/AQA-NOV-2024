@@ -5,23 +5,16 @@ import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
-import org.checkerframework.checker.nullness.qual.AssertNonNullIfNonNull;
 import org.prog.selenium.dto.ResultsDto;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import static org.hamcrest.Matchers.equalTo;
-
-// TODO: write simple test that will:
-// TODO: - include location to query params
-// TODO: - assert location.city != null
-// TODO: - print timezone.description
-public class RestHomework {
+public class MyRestTestHome {
     @Test
-    public void myRestTestHome() {
+    public void myRestTestHome(){
 //   https://randomuser.me/api/?inc=gender,name,nat&noinfo
         RequestSpecification requestSpecification = RestAssured.given();
-        requestSpecification.queryParam("inc", "gender,name,nat,location");
+        requestSpecification.queryParam("inc","gender,name,nat");
         requestSpecification.queryParam("noinfo");
         requestSpecification.baseUri("https://randomuser.me");
         requestSpecification.basePath("/api/");
@@ -33,10 +26,13 @@ public class RestHomework {
         validatableResponse.statusCode(200);
         validatableResponse.statusLine("HTTP/1.1 200 OK");
 
+//        validatableResponse.body("results[0].gender",equalTo("female"));
+//        System.out.println(response.jsonPath().get("results[0].name.first").toString());
+//        Assert.assertEquals(response.jsonPath().get("results[0].gender").toString(),"female",
+//                "User's gender mismatch! Expected male, but was male!");
         ResultsDto dto = response.as(ResultsDto.class);
-        Assert.assertNotNull(dto.getResults().get(0).getLocation().getCity(),
-                "City in location should not be null");
-        System.out.println(response.jsonPath().get("results[0].location.timezone.description").toString());
-
+        Assert.assertEquals(dto.getResults().get(0).getGender(),"female");
+//        System.out.println(response.jsonPath().get("results[0].name.first").toString());
+//
     }
 }
