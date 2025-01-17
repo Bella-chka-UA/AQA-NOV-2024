@@ -13,4 +13,14 @@ delete from Persons where LastName = 'Doe';
 
 select * from Persons where LastName = 'Doe';
 
-select * from Persons;
+select * from Persons  ORDER BY RAND() limit 1;
+
+CREATE TABLE Phones (
+    PhoneId INT AUTO_INCREMENT PRIMARY KEY,
+    PhoneName VARCHAR(255) NOT NULL,
+    GoodsId VARCHAR(100) NOT NULL UNIQUE
+);
+DELETE FROM table Phones
+;
+
+
